@@ -10,14 +10,6 @@ import java.nio.file.FileSystems
 
 object HelloClient extends App with Http4sClientDsl[IO] {  
   def getContext() : SSLContext = {
-    println(s"""current working directory: ${FileSystems.getDefault.getPath(".").toAbsolutePath}""")
-    val path = new File("/Users/abhsrivastava/IdeaProjects/bidir-ssl/client/src/main/resources/client.jks")
-    println(s"cert path: ${path.getAbsolutePath}")
-    println(s"""trustStore: ${System.getProperty("javax.net.ssl.trustStore")}""")
-    println(s"""keyStore: ${System.getProperty("javax.net.ssl.keyStore")}""")
-    println(s"""trustStore Password: ${System.getProperty("javax.net.ssl.trustStorePassword")}""")
-    println(s"""keyStore Password: ${System.getProperty("javax.net.ssl.keyStorePassword")}""")
-
     val ksStream = new FileInputStream(path)
     val ks = KeyStore.getInstance("JKS")
     ks.load(ksStream, "secret".toCharArray)
