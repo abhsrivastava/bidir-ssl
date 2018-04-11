@@ -30,3 +30,5 @@ cp client.jks client/src/main/resources
 
 cp server.jks server/src/main/resources
 
+Extremely useful [link](https://github.com/viniciusccarvalho/boot-two-way-ssl-example)
+
