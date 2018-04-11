@@ -21,8 +21,13 @@ object HelloServerMain extends HelloServer[IO] {
 abstract class HelloServer[F[_]: Effect] extends StreamApp[F] {
   def builder: ServerBuilder[F] with SSLContextSupport[F]
   def getContext() : SSLContext = {
-    val path = new File("server/src/main/resources/server.jks")
+    val path = new File("/Users/abhsrivastava/IdeaProjects/bidir-ssl/server/src/main/resources/server.jks")
     println(s"cert path: ${path.getAbsolutePath}")
+    println(s"""trustStore: ${System.getProperty("javax.net.ssl.trustStore")}""")
+    println(s"""keyStore: ${System.getProperty("javax.net.ssl.keyStore")}""")
+    println(s"""trustStore Password: ${System.getProperty("javax.net.ssl.trustStorePassword")}""")
+    println(s"""keyStore Password: ${System.getProperty("javax.net.ssl.keyStorePassword")}""")
+    
     val ksStream = new FileInputStream(path)
     val ks = KeyStore.getInstance("JKS")
     ks.load(ksStream, "secret".toCharArray)
